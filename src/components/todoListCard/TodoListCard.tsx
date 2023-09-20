@@ -34,6 +34,7 @@ const TodoListCard: FC<TodoListCardPropsType> = ({title, tasks}) => {
         <div className={"CardWrapper"}>
             <h3 className={"CardTitle"}>{title}</h3>
 
+
             <div>
                 <div className={"TodoForm"}>
                     <input className={"TodoInput"} placeholder={"What is the task today?"}/>
