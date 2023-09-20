@@ -117,8 +117,18 @@
     box-shadow: 0 0 0 2px rgba(203, 214, 238, 0.71);
 }
 
-.CloseBtn {
+.EmptyTasksList {
+    font-size: 20px;
+    color: #fff;
+    position: relative;
+    left: 40px;
+    bottom: 16px;
+}
+
+.RemoveBtn {
     text-decoration: none;
+    background-color: transparent;
+
 }
 
 /*.FilterBtn[disabled] {*/

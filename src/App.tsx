@@ -1,19 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import TodoListCard, {TasksType} from "./components/todoListCard/TodoListCard";
 
 function App() {
     const todoListTitle1: string = "What to learn";
     const todoListTitle2: string = "Projects";
-    const todoListTitle3: string = "Music"
+    const todoListTitle3: string = "Music";
 
-    const tasks: Array<TasksType> = [
+    const [tasks, setTasks] = useState<Array<TasksType>>( [
         {id: 1, titleTask: "HTML&CSS", isDone: true},
         {id: 2, titleTask: "JS", isDone: true},
         {id: 3, titleTask: "TS", isDone: false},
         {id: 4, titleTask: "React", isDone: false},
         {id: 5, titleTask: "Redux", isDone: false},
-    ]
+    ]);
 
     // const tasks2 = [
     //     {id: 6, titleTask: "Portfolio", isDone: true},
@@ -27,10 +27,21 @@ function App() {
     //     {id: 11, titleTask: "Nickelback", isDone: true},
     // ]
 
+    const removeTask = (tasksId: number) => {
+        const newState: Array<TasksType> = [];
+        for (let i = 0; i < tasks.length ; i++) {
+            if (tasks[i].id !== tasksId) {
+                newState.push(tasks[i]);
+            }
+        }
+        setTasks(newState)
+    }
+
     return (
         <div className="App">
             <TodoListCard title={todoListTitle1}
-                            tasks={tasks}/>
+                          tasks={tasks}
+                          removeTask={removeTask}/>
         </div>
     );
 }
