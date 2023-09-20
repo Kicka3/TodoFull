@@ -10,26 +10,27 @@ export type TasksType = {
 type TodoListCardPropsType = {
     title: string,
     tasks: Array<TasksType>,
-    removeTask: (tasksId: number) => void,
+    removeTask: (taskId: number) => void,
 }
 
 
 const TodoListCard: FC<TodoListCardPropsType> = ({title, tasks, removeTask}) => {
 
-
     // Что это такое?
-    const listItems: Array<JSX.Element> | JSX.Element = tasks.map(element => {
+    const listItems: Array<JSX.Element> | JSX.Element = tasks.map(el => {
 
         const onClickRemoveTaskHandler = () => {
-            removeTask(element.id)
+            console.log(el.id)
+            removeTask(el.id)
         }
+
         return (
             <li className={"TodoListWrapperLi"}
-                key={element.id}>
+                key={el.id}>
                 <input className={"TodoTask"}
                        type="checkbox"
-                       checked={element.isDone}/>
-                <span>{element.titleTask}</span>
+                       checked={el.isDone}/>
+                <span>{el.titleTask}</span>
                 <button className={"RemoveBtn"}
                         onClick={onClickRemoveTaskHandler}>✖️
                 </button>
@@ -37,10 +38,9 @@ const TodoListCard: FC<TodoListCardPropsType> = ({title, tasks, removeTask}) => 
         )
     });
 
-    const tasksList: JSX.Element = tasks.length
+    const TasksList: JSX.Element = tasks.length
         ? <ul>{listItems}</ul>
-        : <span className={"EmptyTasksList"}>Your tasks list is empty</span>
-
+        : <span className={"EmptyTasksList"}>Your tasks lists is empty</span>
 
     return (
         <div className={"CardWrapper"}>
@@ -53,25 +53,9 @@ const TodoListCard: FC<TodoListCardPropsType> = ({title, tasks, removeTask}) => 
                 </div>
 
                 <div className={"TodoListsWrapper"}>
-                    <ul>{tasksList}</ul>
-
-
-                    {/*        <ul>*/}
-                    {/*            <li className={"TodoListWrapperLi"}>*/}
-                    {/*                <input className={"TodoTask"} type="checkbox" checked={tasks[0].isDone}/>*/}
-                    {/*                <span>{tasks[0].titleTask}</span>*/}
-                    {/*            </li>*/}
-
-                    {/*            <li className={"TodoListWrapperLi"}>*/}
-                    {/*                <input className={"TodoTask"} type="checkbox" checked={tasks[1].isDone}/>*/}
-                    {/*                <span>{tasks[1].titleTask}</span>*/}
-                    {/*            </li>*/}
-
-                    {/*            <li className={"TodoListWrapperLi"}>*/}
-                    {/*                <input className={"TodoTask"} type="checkbox" checked={tasks[2].isDone}/>*/}
-                    {/*                <span>{tasks[2].titleTask}</span>*/}
-                    {/*            </li>*/}
-                    {/*        </ul>*/}
+                    <ul>
+                        {TasksList}
+                    </ul>
                 </div>
             </div>
 

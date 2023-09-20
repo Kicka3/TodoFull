@@ -2,12 +2,14 @@ import React, {useState} from 'react';
 import './App.css';
 import TodoListCard, {TasksType} from "./components/todoListCard/TodoListCard";
 
+type FilteredValueType = 'all' | 'active' | 'completed';
+
 function App() {
     const todoListTitle1: string = "What to learn";
-    const todoListTitle2: string = "Projects";
-    const todoListTitle3: string = "Music";
+    // const todoListTitle2: string = "Projects";
+    // const todoListTitle3: string = "Music";
 
-    const [tasks, setTasks] = useState<Array<TasksType>>( [
+    const [tasks, setTasks] = useState<Array<TasksType>>([
         {id: 1, titleTask: "HTML&CSS", isDone: true},
         {id: 2, titleTask: "JS", isDone: true},
         {id: 3, titleTask: "TS", isDone: false},
@@ -27,23 +29,39 @@ function App() {
     //     {id: 11, titleTask: "Nickelback", isDone: true},
     // ]
 
-    const removeTask = (tasksId: number) => {
+
+    const removeTask = (taskId: number) => {
         const newState: Array<TasksType> = [];
-        for (let i = 0; i < tasks.length ; i++) {
-            if (tasks[i].id !== tasksId) {
-                newState.push(tasks[i]);
+        for (let i = 0; i < tasks.length; i++) {
+            if (tasks[i].id !== taskId) {
+                newState.push(tasks[i])
             }
         }
-        setTasks(newState)
+        setTasks(newState);
     }
+
+
+    const [filter, setFilter] = useState<FilteredValueType>('all')
+
+    const getFilteredTaskForRender = (allTasks: Array<TasksType>, filterValue: FilteredValueType) => {
+        if (filterValue === 'active') {
+            return allTasks.filter(task => task.isDone === false)
+        }
+        if (filterValue === 'completed') {
+            return allTasks.filter(task => task.isDone === true)
+        }
+        return allTasks;
+    }
+
+    const filteredTasksForRender: Array<TasksType> = getFilteredTaskForRender(tasks, filter)
 
     return (
         <div className="App">
             <TodoListCard title={todoListTitle1}
-                          tasks={tasks}
+                          tasks={filteredTasksForRender}
                           removeTask={removeTask}/>
         </div>
-    );
+    )
 }
 
 export default App;
