@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import TodoListCard, {TasksType} from "./components/todoListCard/TodoListCard";
 
-type FilteredValueType = 'all' | 'active' | 'completed';
+export type FilteredValueType = 'all' | 'active' | 'completed';
 
 function App() {
     const todoListTitle1: string = "What to learn";
@@ -40,7 +40,6 @@ function App() {
         setTasks(newState);
     }
 
-
     const [filter, setFilter] = useState<FilteredValueType>('all')
 
     const getFilteredTaskForRender = (allTasks: Array<TasksType>, filterValue: FilteredValueType) => {
@@ -54,12 +53,15 @@ function App() {
     }
 
     const filteredTasksForRender: Array<TasksType> = getFilteredTaskForRender(tasks, filter)
-
+    const changeFilter = (nextFilterValue: FilteredValueType) => {
+        setFilter(nextFilterValue);
+    }
     return (
         <div className="App">
             <TodoListCard title={todoListTitle1}
                           tasks={filteredTasksForRender}
-                          removeTask={removeTask}/>
+                          removeTask={removeTask}
+                          changeFilter={changeFilter}/>
         </div>
     )
 }

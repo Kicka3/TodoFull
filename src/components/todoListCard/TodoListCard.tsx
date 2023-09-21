@@ -1,10 +1,12 @@
 import React, {FC} from 'react';
+import {FilteredValueType} from "../../App";
 
 
 export type TasksType = {
     id: number,
     titleTask: string,
     isDone: boolean,
+    changeFilter: (nextFilterValue: FilteredValueType) => void,
 }
 
 type TodoListCardPropsType = {
@@ -14,7 +16,12 @@ type TodoListCardPropsType = {
 }
 
 
-const TodoListCard: FC<TodoListCardPropsType> = ({title, tasks, removeTask}) => {
+const TodoListCard: FC<TodoListCardPropsType> = ({
+                                                     title,
+                                                     tasks,
+                                                     removeTask,
+                                                     changeFilter
+                                                 }) => {
 
     // Что это такое?
     const listItems: Array<JSX.Element> | JSX.Element = tasks.map(el => {
@@ -60,9 +67,9 @@ const TodoListCard: FC<TodoListCardPropsType> = ({title, tasks, removeTask}) => 
             </div>
 
             <div className={"FilterBtnWrapper"}>
-                <button className={"FilterBtn"}>All</button>
-                <button className={"FilterBtn"}>Active</button>
-                <button className={"FilterBtn"}>Completed</button>
+                <button className={"FilterBtn"} onClick={() => changeFilter('all')}>All</button>
+                <button className={"FilterBtn"} onClick={() => changeFilter('active')}>Active</button>
+                <button className={"FilterBtn"} onClick={() => changeFilter('completed')}>Completed</button>
             </div>
 
         </div>
