@@ -1,4 +1,4 @@
-import React, {FC, useRef, useState} from 'react';
+import React, {FC, useRef, useState, KeyboardEvent} from 'react';
 import {FilteredValueType} from "../../App";
 
 
@@ -59,6 +59,8 @@ const TodoListCard: FC<TodoListCardPropsType> = ({
         setNewTaskTitle('')
     }
 
+    const onKeyDownAddTask = (event: KeyboardEvent<HTMLInputElement>) => event.key === 'Enter' && onClickAddTask();
+
     const isAddBtnDisabled = !newTaskTitle || title.length >= 15
 
     const OnClickAllHandler = () => changeFilter('all');
@@ -92,8 +94,7 @@ const TodoListCard: FC<TodoListCardPropsType> = ({
                         onChange={(e) => setNewTaskTitle(e.target.value)}
                         placeholder={"What is the task today?"}
                         maxLength={16}
-                        onKeyDown={event => event.key === 'Enter' && onClickAddTask()}
-
+                        onKeyDown={onKeyDownAddTask}
                     />
 
                     <button className={"TodoAddBtn"}
