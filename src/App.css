@@ -117,11 +117,12 @@
     box-shadow: 0 0 0 2px rgba(203, 214, 238, 0.71);
 }
 
-.EmptyTasksList {
-    font-size: 20px;
+.EmptyTasksList,
+.EmptyLine {
+    font-size: 16px;
     color: #fff;
     position: relative;
-    left: 40px;
+    /*left: 40px;*/
     bottom: 16px;
 }
 
