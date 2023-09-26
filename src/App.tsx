@@ -15,8 +15,8 @@ function App() {
     ]);
 
     const removeTask = (taskId: number) => {
-        console.log(taskId)
-        setTasks(tasks.filter((el) => el !== taskId)
+        console.log('Removed:' + ' ' + taskId)
+        setTasks(tasks.filter((t) => t.id !== taskId))
     }
 
     return (
