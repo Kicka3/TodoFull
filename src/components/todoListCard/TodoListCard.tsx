@@ -65,7 +65,7 @@ const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title, removeTask,}) =>
             </div>
 
             <div className={"FilterBtnWrapper"}>
-                <button className={"FilterBtn"}>All</button>
+                <button className={"FilterBtn"} onClick={()=> onClickActiveBtnHandler}>All</button>
                 <button className={"FilterBtn"}>Active</button>
                 <button className={"FilterBtn"}>Completed</button>
             </div>
