@@ -1,11 +1,22 @@
 import React from 'react';
 
 
-const TodoListCard = () => {
+type TodoListCardPropsType = {
+    tasks: Array<TaskType>,
+    title: string
+}
+
+type TaskType = {
+    id: number,
+    titleTask: string,
+    isDone: boolean
+}
+
+const TodoListCard = (props: TodoListCardPropsType) => {
 
     return (
         <div className={"CardWrapper"}>
-            <h3 className={"CardTitle"}></h3>
+            <h3 className={"CardTitle"}>{props.title}</h3>
             <div>
                 <div className={"TodoForm"}>
                     <input

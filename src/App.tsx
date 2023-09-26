@@ -16,7 +16,9 @@ function App() {
 
     return (
         <div className="App">
-            <TodoListCard/>
+            <TodoListCard tasks={tasks}
+                          title={"What to learn today?"}
+                            />
         </div>
     )
 }
