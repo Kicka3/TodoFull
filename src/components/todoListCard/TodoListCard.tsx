@@ -39,6 +39,10 @@ const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title, removeTask,}) =>
         )
     });
 
+    const TasksList: JSX.Element = tasks.length
+        ? <ul>{listsItems}</ul>
+        : <span className={"EmptyTasksList"}>Your tasks lists is empty</span>
+
     return (
         <div className={"CardWrapper"}>
             <h3 className={"CardTitle"}>{title}</h3>
@@ -55,7 +59,7 @@ const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title, removeTask,}) =>
 
                 <div className={"TodoListsWrapper"}>
                     <ul>
-                        {listsItems}
+                        {TasksList}
                     </ul>
                 </div>
             </div>
