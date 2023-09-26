@@ -4,7 +4,7 @@ import React, {FC} from 'react';
 type TodoListCardPropsType = {
     tasks: Array<TaskType>,
     title: string,
-    removeTask: (id: number) => void,
+    removeTask: (taskId: number) => void,
 }
 
 export type TaskType = {
@@ -17,7 +17,7 @@ const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title, removeTask,}) =>
 
     const listsItems: Array<JSX.Element> | JSX.Element = tasks.map((el) => {
 
-        const onClickRemoveBtnHandler = (id: number) => {
+        const onClickRemoveBtnHandler = (taskId: number) => {
             removeTask(el.id)
         }
 

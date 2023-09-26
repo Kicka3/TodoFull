@@ -14,8 +14,8 @@ function App() {
         {id: 6, titleTask: "AXIOS", isDone: false},
     ]);
 
-    const removeTask = (id: number) => {
-        if ()
+    const removeTask = (taskId: number) => {
+        console.log(taskId)
     }
 
     return (
