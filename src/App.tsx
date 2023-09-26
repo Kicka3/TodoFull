@@ -26,16 +26,8 @@ function App() {
         setTasks(nexState)
     };
 
-
     const removeTask = (taskId: string) => {
-        // Переделал на метод с фильтром
-        //     const newState: Array<TasksType> = [];
-        //     for (let i = 0; i < tasks.length; i++) {
-        //         if (tasks[i].id !== taskId) {
-        //             newState.push(tasks[i])
-        //         }
-        //     }
-        //     const nexState: Array<TasksType> = tasks.filter(t => t.id !== taskId)
+
         setTasks(tasks.filter(t => t.id !== taskId));
     }
 

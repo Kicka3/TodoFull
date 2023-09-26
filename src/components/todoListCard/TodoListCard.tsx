@@ -22,8 +22,6 @@ const TodoListCard: FC<TodoListCardPropsType> = ({
                                                      changeFilter,
                                                      addTask,
                                                  }) => {
-    //Создаем ссылочку на инпут
-    // const titleInput = useRef<HTMLInputElement>(null);
     const listItems: Array<JSX.Element> | JSX.Element = tasks.map(el => {
 
         const onClickRemoveTaskHandler = () => {
@@ -72,22 +70,6 @@ const TodoListCard: FC<TodoListCardPropsType> = ({
             <h3 className={"CardTitle"}>{title}</h3>
             <div>
                 <div className={"TodoForm"}>
-                    {/*//Используем useREF*/}
-                    {/*<input ref={titleInput}*/}
-                    {/*       className={"TodoInput"}*/}
-                    {/*       placeholder={"What is the task today?"}/>*/}
-                    {/*<button className={"TodoAddBtn"}*/}
-                    {/*    // onClick={()=>addTask('ddsds')}*/}
-                    {/*    // onClick={()=>{titleInput.current && addTask(titleInput.current.value)}}*/}
-                    {/*        onClick={() => {*/}
-                    {/*            if (titleInput.current !== null) {*/}
-                    {/*                addTask(titleInput.current.value)*/}
-                    {/*                titleInput.current.value = ''*/}
-                    {/*            }*/}
-                    {/*        }}*/}
-                    {/*>+*/}
-                    {/*</button>*/}
-
                     <input
                         className={"TodoInput"}
                         value={newTaskTitle}
