@@ -3,43 +3,24 @@ import React, {FC} from 'react';
 
 type TodoListCardPropsType = {
     tasks: Array<TaskType>,
-    title: string
+    title: string,
+    removeTask: (id: number) => void,
 }
 
-type TaskType = {
+export type TaskType = {
     id: number,
     titleTask: string,
-    isDone: boolean
+    isDone: boolean,
 }
 
-const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title}) => {
-    // const listItems: Array<JSX.Element> | JSX.Element = tasks.map(el => {
-    //
-    //     //---------Выносим наверх кнопку удаления таски:--------------
-    //     const onClickRemoveTaskHandler = () => {
-    //         console.log(el.id)
-    //         removeTask(el.id)
-    //     }
-    //
-    //     //----------Отрисовываем таски при помощи MAP вверху!---------------
-    //     return (
-    //         <li className={"TodoListWrapperLi"}
-    //             key={el.id}>
-    //             <input className={"TodoTask"}
-    //                    type="checkbox"
-    //                    checked={el.isDone}
-    //             />
-    //
-    //             <span>{el.titleTask}</span>
-    //
-    //             <button className={"RemoveBtn"}
-    //                     onClick={onClickRemoveTaskHandler}>✖️
-    //             </button>
-    //         </li>
-    //     )
-    // });
+const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title, removeTask,}) => {
 
     const listsItems: Array<JSX.Element> | JSX.Element = tasks.map((el) => {
+
+        const onClickRemoveBtnHandler = (id: number) => {
+            removeTask(el.id)
+        }
+
         return (
             <li className={"TodoListWrapperLi"}
                 key={el.id}>
@@ -51,11 +32,12 @@ const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title}) => {
                 <span>{el.titleTask}</span>
 
                 <button className={"RemoveBtn"}
+                        onClick={() => onClickRemoveBtnHandler(el.id)}
                 >✖️
                 </button>
             </li>
         )
-    })
+    });
 
     return (
         <div className={"CardWrapper"}>
