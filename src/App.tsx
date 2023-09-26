@@ -3,6 +3,8 @@ import './App.css';
 import TodoListCard from "./components/todoListCard/TodoListCard";
 
 
+type FilteredValueType = 'all' | 'active' | 'completed';
+
 function App() {
 
     const [tasks, setTasks] = useState([
@@ -19,7 +21,9 @@ function App() {
         setTasks(tasks.filter((t) => t.id !== taskId))
     }
 
+    const getFilteredTasks = (tasks: ) => {
 
+    }
 
 
 
