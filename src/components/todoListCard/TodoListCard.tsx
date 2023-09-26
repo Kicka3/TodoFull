@@ -16,7 +16,6 @@ export type TaskType = {
 const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title, removeTask,}) => {
 
     const listsItems: Array<JSX.Element> | JSX.Element = tasks.map((el) => {
-
         const onClickRemoveBtnHandler = (taskId: number) => {
             removeTask(el.id)
         }
@@ -43,6 +42,9 @@ const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title, removeTask,}) =>
         ? <ul>{listsItems}</ul>
         : <span className={"EmptyTasksList"}>Your tasks lists is empty</span>
 
+    const onClickActiveBtnHandler = () => {
+        console.log("eee")}
+
     return (
         <div className={"CardWrapper"}>
             <h3 className={"CardTitle"}>{title}</h3>
@@ -65,7 +67,7 @@ const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title, removeTask,}) =>
             </div>
 
             <div className={"FilterBtnWrapper"}>
-                <button className={"FilterBtn"} onClick={()=> onClickActiveBtnHandler}>All</button>
+                <button className={"FilterBtn"} onClick={onClickActiveBtnHandler}>All</button>
                 <button className={"FilterBtn"}>Active</button>
                 <button className={"FilterBtn"}>Completed</button>
             </div>

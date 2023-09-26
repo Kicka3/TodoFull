@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
-import TodoListCard from "./components/todoListCard/TodoListCard";
+import TodoListCard, {TaskType} from "./components/todoListCard/TodoListCard";
 
 
 type FilteredValueType = 'all' | 'active' | 'completed';
@@ -21,11 +21,46 @@ function App() {
         setTasks(tasks.filter((t) => t.id !== taskId))
     }
 
-    const getFilteredTasks = (tasks: ) => {
 
+
+
+    // //Стейт фильтрации таксок + типизация
+    // const [filter, setFilter] = useState<FilteredValueType>('all')
+    //
+    // //Функция филтрации тасок + типизация
+    // const getFilteredTaskForRender = (allTasks: Array<TasksType>, filterValue: FilteredValueType) => {
+    //     if (filterValue === 'active') {
+    //         return allTasks.filter(task => !task.isDone)
+    //     }
+    //     if (filterValue === 'completed') {
+    //         return allTasks.filter(task => task.isDone)
+    //     }
+    //     return allTasks;
+    // }
+    //
+    // // Сохраняем результат выполнения функции фильтрации в переменную и сетаем в стейт фильтрации тасок:
+    // const filteredTasksForRender: Array<TasksType> = getFilteredTaskForRender(tasks, filter);
+    // const changeFilter = (nextFilterValue: FilteredValueType) => {
+    //     setFilter(nextFilterValue);
+    // }
+    //
+
+    const [filter, setFilter] = useState('all')
+
+    const getFilteredTasks = (allTasks: Array<TaskType>, filterValue: FilteredValueType) => {
+        if (filterValue === 'active') {
+            allTasks.filter(task => task.isDone)
+        }
+        if (filterValue === 'completed') {
+            allTasks.filter(task => task.isDone)
+        }
+        return allTasks;
     }
 
-
+    const getFilteredTasksForRender: Array<TaskType> = getFilteredTasks(tasks, filter);
+    const ChangeFilter = (nextFilterValue: FilteredValueType) => {
+        setFilter()
+    };
 
 
     return (
