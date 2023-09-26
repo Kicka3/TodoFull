@@ -13,8 +13,49 @@ type TaskType = {
 }
 
 const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title}) => {
+    // const listItems: Array<JSX.Element> | JSX.Element = tasks.map(el => {
+    //
+    //     //---------Выносим наверх кнопку удаления таски:--------------
+    //     const onClickRemoveTaskHandler = () => {
+    //         console.log(el.id)
+    //         removeTask(el.id)
+    //     }
+    //
+    //     //----------Отрисовываем таски при помощи MAP вверху!---------------
+    //     return (
+    //         <li className={"TodoListWrapperLi"}
+    //             key={el.id}>
+    //             <input className={"TodoTask"}
+    //                    type="checkbox"
+    //                    checked={el.isDone}
+    //             />
+    //
+    //             <span>{el.titleTask}</span>
+    //
+    //             <button className={"RemoveBtn"}
+    //                     onClick={onClickRemoveTaskHandler}>✖️
+    //             </button>
+    //         </li>
+    //     )
+    // });
 
-    const listsItems = Array<JSX.Element>
+    const listsItems: Array<JSX.Element> | JSX.Element = tasks.map((el) => {
+        return (
+            <li className={"TodoListWrapperLi"}
+                key={el.id}>
+                <input className={"TodoTask"}
+                       type="checkbox"
+                       checked={el.isDone}
+                />
+
+                <span>{el.titleTask}</span>
+
+                <button className={"RemoveBtn"}
+                >✖️
+                </button>
+            </li>
+        )
+    })
 
     return (
         <div className={"CardWrapper"}>
@@ -23,7 +64,7 @@ const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title}) => {
                 <div className={"TodoForm"}>
                     <input
                         className={"TodoInput"}
-                        placeholder={"What is the task today?"}
+                        placeholder={"What is the task ?"}
                     />
 
                     <button className={"TodoAddBtn"}>+</button>
@@ -32,7 +73,7 @@ const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title}) => {
 
                 <div className={"TodoListsWrapper"}>
                     <ul>
-
+                        {listsItems}
                     </ul>
                 </div>
             </div>
