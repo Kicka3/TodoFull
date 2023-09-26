@@ -54,7 +54,7 @@ function App() {
             return allTasks.filter(task => !task.isDone)
         }
         if (filterValue === 'completed') {
-            return allTasks.filter(task => !task.isDone)
+            return allTasks.filter(task => task.isDone)
         }
         return allTasks;
     }
