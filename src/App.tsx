@@ -55,6 +55,8 @@ function App() {
     const changeFilter = (nextFilterValue: FilteredValueType) => {
         setFilter(nextFilterValue);
     }
+
+
     return (
         <div className="App">
             <TodoListCard title={todoListTitle1}

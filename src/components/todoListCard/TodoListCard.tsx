@@ -113,6 +113,7 @@ const TodoListCard: FC<TodoListCardPropsType> = ({
                         {TasksList}
                     </ul>
                 </div>
+
             </div>
 
             <div className={"FilterBtnWrapper"}>
