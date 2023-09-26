@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 
 
 type TodoListCardPropsType = {
@@ -12,11 +12,13 @@ type TaskType = {
     isDone: boolean
 }
 
-const TodoListCard = (props: TodoListCardPropsType) => {
+const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title}) => {
+
+    const listsItems = Array<JSX.Element>
 
     return (
         <div className={"CardWrapper"}>
-            <h3 className={"CardTitle"}>{props.title}</h3>
+            <h3 className={"CardTitle"}>{title}</h3>
             <div>
                 <div className={"TodoForm"}>
                     <input
