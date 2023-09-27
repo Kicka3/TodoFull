@@ -5,6 +5,7 @@ type TodoListCardPropsType = {
     tasks: Array<TaskType>,
     title: string,
     removeTask: (taskId: number) => void,
+    filterTask: () => void
 }
 
 export type TaskType = {
@@ -13,7 +14,7 @@ export type TaskType = {
     isDone: boolean,
 }
 
-const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title, removeTask,}) => {
+const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title, removeTask, filterTask}) => {
 
     const listsItems: Array<JSX.Element> | JSX.Element = tasks.map((el) => {
         const onClickRemoveBtnHandler = (taskId: number) => {
@@ -43,7 +44,10 @@ const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title, removeTask,}) =>
         : <span className={"EmptyTasksList"}>Your tasks lists is empty</span>
 
     const onClickActiveBtnHandler = () => {
-        console.log("eee")}
+        filterTask()
+    }
+
+
 
     return (
         <div className={"CardWrapper"}>

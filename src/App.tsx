@@ -7,7 +7,7 @@ type FilteredValueType = 'all' | 'active' | 'completed';
 
 function App() {
 
-    const [tasks, setTasks] = useState([
+    const [tasks, setTasks] = useState<TaskType[]>([
         {id: 1, titleTask: "HTML&CSS", isDone: true},
         {id: 2, titleTask: "JS", isDone: true},
         {id: 3, titleTask: "TS", isDone: false},
@@ -20,8 +20,6 @@ function App() {
         console.log('Removed:' + ' ' + taskId)
         setTasks(tasks.filter((t) => t.id !== taskId))
     }
-
-
 
 
     // //Стейт фильтрации таксок + типизация
@@ -45,29 +43,28 @@ function App() {
     // }
     //
 
-    const [filter, setFilter] = useState('all')
-
-    const getFilteredTasks = (allTasks: Array<TaskType>, filterValue: FilteredValueType) => {
-        if (filterValue === 'active') {
-            allTasks.filter(task => task.isDone)
+    const [filter, setFilter] = useState<FilteredValueType>('all');
+    const getFilteredTasks = (allTasks: Array<TaskType>, filteredValue: FilteredValueType) => {
+        if (filteredValue === 'active') {
+            return allTasks.filter(task => !task.isDone);
         }
-        if (filterValue === 'completed') {
-            allTasks.filter(task => task.isDone)
+        if (filteredValue === 'completed') {
+            return allTasks.filter(task => task.isDone);
         }
         return allTasks;
-    }
-
-    const getFilteredTasksForRender: Array<TaskType> = getFilteredTasks(tasks, filter);
-    const ChangeFilter = (nextFilterValue: FilteredValueType) => {
-        setFilter()
     };
 
+    const filteredTasksForRender: Array<TaskType> = getFilteredTasks(tasks, filter);
+    const changeFilter = (nexFilterValue: FilteredValueType) => {
+        setFilter(nexFilterValue);
+    }
 
     return (
         <div className="App">
             <TodoListCard tasks={tasks}
                           title={"What to learn today?"}
                           removeTask={removeTask}
+                          filterTask={filteredTasksForRender}
             />
         </div>
     )
