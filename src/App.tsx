@@ -8,15 +8,15 @@ type FilteredValueType = 'all' | 'active' | 'completed';
 function App() {
 
     const [tasks, setTasks] = useState<TaskType[]>([
-        {id: 1, titleTask: "HTML&CSS", isDone: true},
-        {id: 2, titleTask: "JS", isDone: true},
-        {id: 3, titleTask: "TS", isDone: false},
-        {id: 4, titleTask: "React", isDone: false},
-        {id: 5, titleTask: "Redux", isDone: false},
-        {id: 6, titleTask: "AXIOS", isDone: false},
+        {id: crypto.randomUUID(), titleTask: "HTML&CSS", isDone: true},
+        {id: crypto.randomUUID(), titleTask: "JS", isDone: true},
+        {id: crypto.randomUUID(), titleTask: "TS", isDone: false},
+        {id: crypto.randomUUID(), titleTask: "React", isDone: false},
+        {id: crypto.randomUUID(), titleTask: "Redux", isDone: false},
+        {id: crypto.randomUUID(), titleTask: "AXIOS", isDone: false},
     ]);
 
-    const removeTask = (taskId: number) => {
+    const removeTask = (taskId: string) => {
         console.log('Removed:' + ' ' + taskId)
         setTasks(tasks.filter((t) => t.id !== taskId))
     }
