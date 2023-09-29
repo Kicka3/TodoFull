@@ -3,7 +3,7 @@ import './App.css';
 import TodoListCard, {TaskType} from "./components/todoListCard/TodoListCard";
 
 
-type FilteredValueType = 'all' | 'active' | 'completed';
+export type FilteredValueType = 'all' | 'active' | 'completed';
 
 function App() {
 
@@ -54,7 +54,7 @@ function App() {
         return allTasks;
     };
 
-    const filteredTasksForRender: Array<TaskType> = getFilteredTasks(tasks, filter);
+    const FilteredTasks: Array<TaskType> = getFilteredTasks(tasks, filter);
     const changeFilter = (nexFilterValue: FilteredValueType) => {
         setFilter(nexFilterValue);
     }
@@ -64,7 +64,7 @@ function App() {
             <TodoListCard tasks={tasks}
                           title={"What to learn today?"}
                           removeTask={removeTask}
-                          filterTask={filteredTasksForRender}
+                          changeFilter={changeFilter}
             />
         </div>
     )

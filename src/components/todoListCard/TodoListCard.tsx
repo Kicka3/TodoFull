@@ -1,11 +1,12 @@
 import React, {FC} from 'react';
+import {FilteredValueType} from "../../App";
 
 
 type TodoListCardPropsType = {
     tasks: Array<TaskType>,
     title: string,
     removeTask: (taskId: string) => void,
-    filterTask: () => void
+    changeFilter: (nexFilterValue: FilteredValueType) => void
 }
 
 export type TaskType = {
@@ -14,7 +15,7 @@ export type TaskType = {
     isDone: boolean,
 }
 
-const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title, removeTask, filterTask}) => {
+const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title, removeTask, changeFilter}) => {
 
     const listsItems: Array<JSX.Element> | JSX.Element = tasks.map((el) => {
         const onClickRemoveBtnHandler = (taskId: string) => {
@@ -44,7 +45,7 @@ const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title, removeTask, filt
         : <span className={"EmptyTasksList"}>Your tasks lists is empty</span>
 
     const onClickActiveBtnHandler = () => {
-        filterTask()
+        changeFilter()
     }
 
 
