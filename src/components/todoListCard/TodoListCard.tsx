@@ -29,9 +29,7 @@ const TodoListCard: FC<TodoListCardPropsType> = ({tasks, title, removeTask, chan
                        type="checkbox"
                        checked={el.isDone}
                 />
-
                 <span>{el.titleTask}</span>
-
                 <button className={"RemoveBtn"}
                         onClick={() => onClickRemoveBtnHandler(el.id)}
                 >✖️
