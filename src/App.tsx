@@ -21,28 +21,6 @@ function App() {
         setTasks(tasks.filter((t) => t.id !== taskId))
     }
 
-
-    // //Стейт фильтрации таксок + типизация
-    // const [filter, setFilter] = useState<FilteredValueType>('all')
-    //
-    // //Функция филтрации тасок + типизация
-    // const getFilteredTaskForRender = (allTasks: Array<TasksType>, filterValue: FilteredValueType) => {
-    //     if (filterValue === 'active') {
-    //         return allTasks.filter(task => !task.isDone)
-    //     }
-    //     if (filterValue === 'completed') {
-    //         return allTasks.filter(task => task.isDone)
-    //     }
-    //     return allTasks;
-    // }
-    //
-    // // Сохраняем результат выполнения функции фильтрации в переменную и сетаем в стейт фильтрации тасок:
-    // const filteredTasksForRender: Array<TasksType> = getFilteredTaskForRender(tasks, filter);
-    // const changeFilter = (nextFilterValue: FilteredValueType) => {
-    //     setFilter(nextFilterValue);
-    // }
-    //
-
     const [filter, setFilter] = useState<FilteredValueType>('all');
     const getFilteredTasks = (allTasks: Array<TaskType>, filteredValue: FilteredValueType) => {
         if (filteredValue === 'active') {
@@ -69,5 +47,4 @@ function App() {
         </div>
     )
 }
-
 export default App;
