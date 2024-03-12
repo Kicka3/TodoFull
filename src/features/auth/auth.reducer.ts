@@ -1,9 +1,10 @@
-import { authAPI, LoginParamsType } from "api/todolists-api";
+import { authAPI, LoginParamsType, ResponseType } from "api/todolists-api";
 import { handleServerAppError, handleServerNetworkError } from "utils/error-utils";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppThunk } from "app/store";
 import { appActions } from "app/app.reducer";
 import { clearTaskAndTodolists } from "common/actions/common.actions";
+import { createAppSyncThunksFn } from "utils/createAppSyncThunksFn";
 
 const slice = createSlice({
   name: "auth",
@@ -17,9 +18,6 @@ const slice = createSlice({
   },
 });
 
-export const authReducer = slice.reducer;
-export const authActions = slice.actions;
-
 // thunks
 export const loginTC =
   (data: LoginParamsType): AppThunk =>
@@ -29,7 +27,7 @@ export const loginTC =
       .login(data)
       .then((res) => {
         if (res.data.resultCode === 0) {
-          dispatch(authActions.setIsLoggedIn({ isLoggedIn: true }));
+          // dispatch(authThunks.login({ isLoggedIn: true }));
           dispatch(appActions.setAppStatus({ status: "succeeded" }));
         } else {
           handleServerAppError(res.data, dispatch);
@@ -46,7 +44,7 @@ export const logoutTC = (): AppThunk => (dispatch) => {
     .logout()
     .then((res) => {
       if (res.data.resultCode === 0) {
-        dispatch(authActions.setIsLoggedIn({ isLoggedIn: false }));
+        // dispatch(authThunks.login({ isLoggedIn: false }));
         dispatch(clearTaskAndTodolists());
         dispatch(appActions.setAppStatus({ status: "succeeded" }));
       } else {
@@ -57,3 +55,7 @@ export const logoutTC = (): AppThunk => (dispatch) => {
       handleServerNetworkError(error, dispatch);
     });
 };
+
+export const authReducer = slice.reducer;
+export const authActions = slice.actions;
+// export const authThunks = { };

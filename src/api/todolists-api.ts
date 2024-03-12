@@ -1,4 +1,5 @@
 import axios from "axios";
+import { UpdateDomainTaskModelType } from "features/TodolistsList/tasks.reducer";
 
 const settings = {
   withCredentials: true,
@@ -35,12 +36,17 @@ export const todolistsAPI = {
   deleteTask(todolistId: string, taskId: string) {
     return instance.delete<ResponseType>(`todo-lists/${todolistId}/tasks/${taskId}`);
   },
-  createTask(todolistId: string, taskTitile: string) {
-    return instance.post<ResponseType<{ item: TaskType }>>(`todo-lists/${todolistId}/tasks`, { title: taskTitile });
+  createTask(arg: AddTaskArgs) {
+    return instance.post<ResponseType<{ item: TaskType }>>(`todo-lists/${arg.todolistId}/tasks`, { title: arg.title });
   },
   updateTask(todolistId: string, taskId: string, model: UpdateTaskModelType) {
     return instance.put<ResponseType<TaskType>>(`todo-lists/${todolistId}/tasks/${taskId}`, model);
   },
+};
+
+export type AddTaskArgs = {
+  title: string;
+  todolistId: string;
 };
 
 export type LoginParamsType = {
@@ -77,12 +83,14 @@ export type ResponseType<D = {}> = {
   messages: Array<string>;
   data: D;
 };
+
 export enum TaskStatuses {
   New = 0,
   InProgress = 1,
   Completed = 2,
   Draft = 3,
 }
+
 export enum TaskPriorities {
   Low = 0,
   Middle = 1,
@@ -90,6 +98,7 @@ export enum TaskPriorities {
   Urgently = 3,
   Later = 4,
 }
+
 export type TaskType = {
   description: string;
   title: string;
@@ -102,6 +111,7 @@ export type TaskType = {
   order: number;
   addedDate: string;
 };
+export type UpdateTaskArgs = { taskId: string; domainModel: UpdateDomainTaskModelType; todolistId: string };
 export type UpdateTaskModelType = {
   title: string;
   description: string;

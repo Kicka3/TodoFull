@@ -13,7 +13,7 @@ export const handleServerAppError = <D>(data: ResponseType<D>, dispatch: Dispatc
   dispatch(appActions.setAppStatus({ status: "failed" }));
 };
 
-export const handleServerkError = (error: { message: string }, dispatch: Dispatch) => {
+export const handleServerError = (error: { message: string }, dispatch: Dispatch) => {
   dispatch(appActions.setAppError({ error: error.message ? error.message : "Some error occurred" }));
   dispatch(appActions.setAppStatus({ status: "failed" }));
 };
