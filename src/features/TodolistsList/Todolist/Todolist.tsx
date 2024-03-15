@@ -1,17 +1,17 @@
 import React, { useCallback, useEffect } from "react";
-import { AddItemForm } from "../../../components/AddItemForm/AddItemForm";
-import { EditableSpan } from "../../../components/EditableSpan/EditableSpan";
-import { Task } from "./Task/Task";
-import { TaskStatuses, TaskType } from "../../../api/todolists-api";
-import { FilterValuesType, TodolistDomainType } from "features/TodolistsList/todolists.reducer";
-import { useAppDispatch } from "../../../hooks/useAppDispatch";
-import { Button, IconButton } from "@mui/material";
 import { Delete } from "@mui/icons-material";
+import { Button, IconButton } from "@mui/material";
+import { Task } from "./Task/Task";
+import { FilterValuesType, TodolistDomainType } from "features/TodolistsList/todolists.reducer";
 import { tasksThunks } from "features/TodolistsList/tasks.reducer";
+import { TaskType } from "features/TodolistsList/todolists.api";
+import { TaskStatuses } from "common/enums";
+import { useAppDispatch } from "common/hooks";
+import { AddItemForm, EditableSpan } from "common/components";
 
 type PropsType = {
   todolist: TodolistDomainType;
-  tasks: Array<TaskType>;
+  tasks: TaskType[];
   changeFilter: (value: FilterValuesType, todolistId: string) => void;
   addTask: (title: string, todolistId: string) => void;
   changeTaskStatus: (id: string, status: TaskStatuses, todolistId: string) => void;
@@ -19,18 +19,13 @@ type PropsType = {
   removeTask: (taskId: string, todolistId: string) => void;
   removeTodolist: (id: string) => void;
   changeTodolistTitle: (id: string, newTitle: string) => void;
-  demo?: boolean;
 };
 
-export const Todolist = React.memo(function ({ demo = false, ...props }: PropsType) {
+export const Todolist = React.memo(function (props: PropsType) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (demo) {
-      return;
-    }
-    const thunk = tasksThunks.fetchTasks(props.todolist.id);
-    dispatch(thunk);
+    dispatch(tasksThunks.fetchTasks(props.todolist.id));
   }, []);
 
   const addTask = useCallback(
